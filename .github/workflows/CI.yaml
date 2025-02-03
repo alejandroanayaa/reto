@@ -1,0 +1,15 @@
+name: Primer CI pipeline
+on: [pull_request]
+
+jobs: 
+    CI-works:
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Check out repository code
+                uses: actions/checkout@v4
+
+            -   name: Create test folder
+                run: mkdir test_folder
+            
+            -   name: list folders
+                run: ls -a 
