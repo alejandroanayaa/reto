@@ -8,8 +8,26 @@ jobs:
             -   name: Check out repository code
                 uses: actions/checkout@v4
 
-            -   name: Create test folder
-                run: mkdir test_folder
-            
-            -   name: list folders
-                run: ls -a 
+            -   uses: actions/setup-node@v4
+                with:
+                    node-version: '15'
+
+            -   name: Install dependencies 
+                run: npm install
+
+            -   name: Linter (ESLint)
+                run: npm run lint
+
+            -   name: Formatter (Prettier) 
+                run: npm run prettier
+
+            -   name: Test (Jest) 
+                run: CI=true npm run test
+
+            -   name: Build
+                run: npm run build
+
+            -   uses: actions/upload-artifact@v4
+                with:
+                    name: Build
+                    path: ./build
